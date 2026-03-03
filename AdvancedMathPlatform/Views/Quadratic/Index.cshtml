@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Ecuații de gradul II";
+}
+
+<h2>Rezolvare ecuație de gradul II</h2>
+
+<form method="post">
+    <label>Introduce coeficienții (a,b,c):</label>
+    <input type="text" name="expression" placeholder="Ex: 1,3,2" required />
+    <button type="submit">Rezolvă</button>
+</form>
+
+@if (ViewBag.Solutions != null)
+{
+    var solutions = ViewBag.Solutions as List<double>;
+
+    <hr />
+    <h3>Rezultat:</h3>
+
+    if (solutions.Count == 0)
+    {
+        <p>Mulțimea soluțiilor este vidă.</p>
+    }
+    else if (solutions.Count == 1)
+    {
+        <p>Soluția este: x = @solutions[0]</p>
+    }
+    else
+    {
+        <p>x₁ = @solutions[0]</p>
+        <p>x₂ = @solutions[1]</p>
+    }
+}

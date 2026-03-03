@@ -1,0 +1,21 @@
+﻿@model AdvancedMathPlatform.Models.MathViewModel
+
+<h1>Operații cu numere zecimale</h1>
+
+<form asp-action="Calculate" method="post">
+
+    <div class="input-section">
+        <label>Introdu expresia (ex: 2.5+3.7):</label>
+        <input type="text" asp-for="Expression" required />
+        <button type="submit">Calculează</button>
+    </div>
+
+</form>
+
+@if (Model?.Result != null)
+{
+    <div class="result-section">
+        <h3>Rezultat:</h3>
+        <div>@Model.Result</div>
+    </div>
+}

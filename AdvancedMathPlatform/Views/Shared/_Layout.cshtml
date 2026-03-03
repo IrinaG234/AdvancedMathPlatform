@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - TeachMATH</title>
+
+    <link rel="stylesheet" href="~/css/AMP_style.css" />
+</head>
+<body>
+
+    <div class="dashboard">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+            <h2 class="logo">
+                <a asp-controller="Home" asp-action="Index">TeachMATH</a>
+            </h2>
+
+
+            <div class="menu">
+
+                <h3>📚 Gimnaziu</h3>
+                <ul>
+                    <li>
+                        <a asp-controller="Zecimale" asp-action="Index">
+                            Zecimale
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Functii" asp-action="Index">
+                            Functii
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Operatii cu Fractii" asp-action="Index">
+                            Operatii cu Fractii
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Linear" asp-action="Index">
+                            Ecuații grad I
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Quadratic" asp-action="Index">
+                            Ecuații grad II
+                        </a>
+                    </li>
+                    <li onclick="loadContent('Sistem de ecuatii')">Sistem de ecuații</li>
+                    <li onclick="loadContent('Proportii')">Proporții</li>
+                    <li onclick="loadContent('Teorema lui Pitagora')">Teorema lui Pitagora</li>
+                    <li onclick="loadContent('Aria si Perimetrul')">Aria și Perimetrul</li>
+                </ul>
+
+                <h3>🎓 Liceu</h3>
+                <ul>
+                    <li onclick="loadContent('Matrici')">Matrici</li>
+                    <li onclick="loadContent(' Determinati')">Determinanți</li>
+                    <li onclick="loadContent(' Probabilitati')">Probabilități</li>
+                    <li onclick="loadContent('Logaritmi')" >Logaritmi</li>
+                    <li onclick="loadContent('Progresie aritmetica')" >Progresie aritmetică</li>
+                    <li onclick="loadContent('Functii avansate')" >Funcții avansate</li>
+                </ul>
+
+            </div>
+        </aside>
+
+        <!-- CENTER CONTENT -->
+        <main class="main">
+            @RenderBody()
+        </main>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="right-panel">
+
+            <div class="profile-card">
+                <div class="avatar">👩‍🎓</div>
+                <h3>Irina Glodin</h3>
+                <p class="email">irina@email.com</p>
+
+                <div class="profile-buttons">
+                    <button class="btn edit">Edit Profile</button>
+                    <button class="btn logout">Logout</button>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h3>🕘 History</h3>
+                <div id="historyContainer"></div>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <script src="~/js/AMP_script.js"></script>
+</body>
+</html>
