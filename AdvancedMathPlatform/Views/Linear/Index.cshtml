@@ -13,13 +13,30 @@
 <div id="workArea">
     <form asp-controller="Linear" asp-action="Calculate" method="post">
         <div class="input-section">
+
             <label for="equationInput">Introduceți ecuația:</label>
-            <input id="equationInput"
-                   type="text"
-                   name="Equation"
-                   value="@Model.Equation"
-                   placeholder="ex: 2x+6=0"
-                   autocomplete="off" />
+            <input id="equationInput" type="text" name="Equation"
+                   value="@Model.Equation" placeholder="ex: 2x+6=0" autocomplete="off" />
+
+            <label style="margin-top:14px;">Limbă / Language / Язык:</label>
+            <div class="lang-selector">
+                <label class="lang-option @(Model.Language == "Română" || Model.Language == null ? "lang-selected" : "")">
+                    <input type="radio" name="Language" value="Română"
+                    @(Model.Language == "Română" || Model.Language == null ? "checked" : "") />
+                    🇷🇴 Română
+                </label>
+                <label class="lang-option @(Model.Language == "English" ? "lang-selected" : "")">
+                    <input type="radio" name="Language" value="English"
+                    @(Model.Language == "English" ? "checked" : "") />
+                    🇬🇧 English
+                </label>
+                <label class="lang-option @(Model.Language == "Russian" ? "lang-selected" : "")">
+                    <input type="radio" name="Language" value="Russian"
+                    @(Model.Language == "Russian" ? "checked" : "") />
+                    🇷🇺 Русский
+                </label>
+            </div>
+
             <button type="submit">Calculează</button>
         </div>
     </form>
@@ -33,6 +50,8 @@
 
     @if (Model.Steps.Any())
     {
+        <div class="lang-badge">@Model.LanguageFlag @Model.Language</div>
+
         <div class="result-section">
             @foreach (var step in Model.Steps)
             {
@@ -55,11 +74,16 @@
 
 @section Scripts {
     <script>
-        // Această pagină MVC nu folosește showWelcome() din JS-ul vechi.
-        // Suprascriem funcția ca să nu ascundă workArea.
         window.onload = function () {
             document.getElementById("welcomeBlock").style.display = "block";
-            document.getElementById("workArea").style.display  = "block";
+            document.getElementById("workArea").style.display = "block";
+
+            document.querySelectorAll('.lang-option input').forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    document.querySelectorAll('.lang-option').forEach(l => l.classList.remove('lang-selected'));
+                    this.parentElement.classList.add('lang-selected');
+                });
+            });
         };
     </script>
 }

@@ -7,28 +7,28 @@ namespace AdvancedMathPlatform.Models
         private readonly double _a;
         private readonly double _b;
         private readonly double _c;
+        private readonly IStepLabels _labels;
+        private readonly IMessages _messages;
 
         public string ProblemType => "Quadratic";
 
-        public QuadraticProblem(double a, double b, double c)
+        public QuadraticProblem(double a, double b, double c, IStepLabels labels, IMessages messages)
         {
             _a = a;
             _b = b;
             _c = c;
+            _labels = labels;
+            _messages = messages;
         }
 
         public string Solve()
         {
-            if (_a == 0)
-                return "Nu este ecuație de gradul 2 (a = 0)";
+            if (_a == 0) return _messages.NotQuadratic;
 
             double delta = _b * _b - 4 * _a * _c;
 
-            if (delta < 0)
-                return $"Fără soluții reale (Δ = {delta:F2} < 0)";
-
-            if (delta == 0)
-                return $"x = {-_b / (2 * _a):F4}";
+            if (delta < 0) return $"{_messages.NoSolution} (Δ = {delta:F2} < 0)";
+            if (delta == 0) return $"x = {-_b / (2 * _a):F4}";
 
             double x1 = (-_b + Math.Sqrt(delta)) / (2 * _a);
             double x2 = (-_b - Math.Sqrt(delta)) / (2 * _a);
@@ -36,18 +36,18 @@ namespace AdvancedMathPlatform.Models
         }
 
         public string GetDescription()
-            => $"Ecuație de gradul 2: {_a}x² + ({_b})x + ({_c}) = 0  →  Δ = {_b * _b - 4 * _a * _c:F2}";
+            => $"{_labels.Equation}: {_a}x² + ({_b})x + ({_c}) = 0";
 
         public IEnumerable<string> SolveWithSteps()
         {
-            double b2   = _b * _b;
-            double ac4  = 4 * _a * _c;
+            double b2 = _b * _b;
+            double ac4 = 4 * _a * _c;
             double delta = b2 - ac4;
 
-            yield return $"Ecuația: {_a}x² + ({_b})x + ({_c}) = 0";
-            yield return $"Coeficienți: a = {_a},  b = {_b},  c = {_c}";
+            yield return $"{_labels.Equation}: {_a}x² + ({_b})x + ({_c}) = 0";
+            yield return $"{_labels.Coefficients}: a = {_a},  b = {_b},  c = {_c}";
             yield return "─────────────────────────────────────";
-            yield return "Pasul 1: Calculăm discriminantul Δ";
+            yield return $"{_labels.Step1}: {_labels.Discriminant}";
             yield return "  Δ = b² - 4ac";
             yield return $"  Δ = ({_b})² - 4 · ({_a}) · ({_c})";
             yield return $"  Δ = {b2} - ({ac4})";
@@ -57,12 +57,12 @@ namespace AdvancedMathPlatform.Models
             if (delta < 0)
             {
                 yield return $"Δ = {delta} < 0";
-                yield return "Ecuația nu are soluții reale.";
+                yield return _labels.NoRealSolutions;
             }
             else if (delta == 0)
             {
-                yield return "Δ = 0  →  o soluție dublă (x₁ = x₂)";
-                yield return "Pasul 2: Calculăm soluția";
+                yield return $"Δ = 0  →  {_labels.DoubleSolution}";
+                yield return $"{_labels.Step2}: {_labels.Result}";
                 yield return "  x = -b / (2a)";
                 double x = -_b / (2 * _a);
                 yield return $"  x = -({_b}) / (2 · {_a})";
@@ -71,9 +71,9 @@ namespace AdvancedMathPlatform.Models
             else
             {
                 double sqrtD = Math.Sqrt(delta);
-                yield return $"Δ = {delta} > 0  →  două soluții reale distincte";
+                yield return $"Δ = {delta} > 0  →  {_labels.TwoSolutions}";
                 yield return $"  √Δ = √{delta} ≈ {sqrtD:F4}";
-                yield return "Pasul 2: Calculăm soluțiile";
+                yield return $"{_labels.Step2}: {_labels.Result}";
                 yield return "  x₁ = (-b + √Δ) / (2a)";
                 double x1 = (-_b + sqrtD) / (2 * _a);
                 yield return $"  x₁ = (-({_b}) + {sqrtD:F4}) / (2 · {_a}) = {x1:F4}";

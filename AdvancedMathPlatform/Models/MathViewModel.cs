@@ -11,5 +11,9 @@ namespace AdvancedMathPlatform.Models
         public string? Description { get; set; }
         public string? ParseError { get; set; }
         public List<string> Steps { get; set; } = new();
+
+        // ── Abstract Factory (Language) ───────────────────────
+        public string Language { get; set; } = "Română";
+        public string LanguageFlag { get; set; } = "🇷🇴";
     }
 }
