@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <Folder Include="Core\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>

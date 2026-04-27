@@ -1,19 +1,11 @@
-using AdvancedMathPlatform.Interfaces;
-using AdvancedMathPlatform.Services;
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Adaugă serviciile MVC
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<ICalculator, BasicCalculator>();
-
-
-// Dependency Injection
-builder.Services.AddScoped<ICalculator, BasicCalculator>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurare pipeline HTTP
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -21,15 +13,15 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
+// Ruta default
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

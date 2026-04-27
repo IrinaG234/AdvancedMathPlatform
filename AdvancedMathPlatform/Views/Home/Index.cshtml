@@ -1,37 +1,8 @@
-﻿@model AdvancedMathPlatform.Models.MathViewModel
-
 @{
     ViewData["Title"] = "Home";
 }
 
 <div id="welcomeBlock">
     <h2>Welcome to TeachMATH</h2>
-    <p>Selectează o temă din stânga pentru a începe.</p>
-</div>
-
-<div id="workArea">
-
-    <h1>Calculator Simplu</h1>
-
-    <form asp-action="Calculate" method="post">
-
-        <div class="input-section">
-            <label>Introdu expresia:</label>
-            <input type="text" asp-for="Expression" />
-            <button type="submit">Calculează</button>
-        </div>
-
-    </form>
-
-    @if (Model != null && Model.Result != null)
-
-    {
-        <div class="result-section">
-            <h3>Rezultat:</h3>
-            <div id="resultBox">
-                @Model.Result
-            </div>
-        </div>
-    }
-
+    <p>Selectează o categorie din meniul din stânga pentru a începe.</p>
 </div>

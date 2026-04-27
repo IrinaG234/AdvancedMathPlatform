@@ -1,24 +1,24 @@
 @model AdvancedMathPlatform.Models.MathViewModel
 
 @{
-    ViewData["Title"] = "Ecuații de Gradul II";
+    ViewData["Title"] = "Ecuații de Gradul I";
 }
 
 <div id="welcomeBlock">
-    <h2>Ecuații de Gradul II</h2>
-    <p>Introduceți ecuația de forma <strong>ax² + bx + c = 0</strong> și apăsați <em>Calculează</em>.</p>
-    <p style="opacity:0.7; font-size:0.9em;">Exemplu: <code>x^2-4x+4=0</code> &nbsp;|&nbsp; <code>2x^2+3x-5=0</code> &nbsp;|&nbsp; <code>x^2+1=0</code></p>
+    <h2>Ecuații de Gradul I</h2>
+    <p>Introduceți ecuația de forma <strong>ax + b = 0</strong> și apăsați <em>Calculează</em>.</p>
+    <p style="opacity:0.7; font-size:0.9em;">Exemplu: <code>2x+6=0</code> &nbsp;|&nbsp; <code>-3x+9=0</code> &nbsp;|&nbsp; <code>5x-10=0</code></p>
 </div>
 
 <div id="workArea">
-    <form asp-controller="Quadratic" asp-action="Calculate" method="post">
+    <form asp-controller="Linear" asp-action="Calculate" method="post">
         <div class="input-section">
             <label for="equationInput">Introduceți ecuația:</label>
             <input id="equationInput"
                    type="text"
                    name="Equation"
                    value="@Model.Equation"
-                   placeholder="ex: x^2-4x+4=0"
+                   placeholder="ex: 2x+6=0"
                    autocomplete="off" />
             <button type="submit">Calculează</button>
         </div>
@@ -40,13 +40,9 @@
                 {
                     <div class="step-divider"></div>
                 }
-                else if (step.TrimStart().StartsWith("x =") || step.TrimStart().StartsWith("x₁") || step.TrimStart().StartsWith("x₂"))
+                else if (step.TrimStart().StartsWith("x ="))
                 {
                     <p class="step-answer">@step</p>
-                }
-                else if (step.StartsWith("Δ =") || step.TrimStart().StartsWith("Δ ="))
-                {
-                    <p class="step-delta">@step</p>
                 }
                 else
                 {
@@ -59,6 +55,8 @@
 
 @section Scripts {
     <script>
+        // Această pagină MVC nu folosește showWelcome() din JS-ul vechi.
+        // Suprascriem funcția ca să nu ascundă workArea.
         window.onload = function () {
             document.getElementById("welcomeBlock").style.display = "block";
             document.getElementById("workArea").style.display  = "block";

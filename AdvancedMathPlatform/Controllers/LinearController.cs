@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdvancedMathPlatform.Controllers
 {
-    public class QuadraticController : Controller
+    public class LinearController : Controller
     {
         public IActionResult Index()
             => View(new MathViewModel());
@@ -12,7 +12,7 @@ namespace AdvancedMathPlatform.Controllers
         [HttpPost]
         public IActionResult Calculate(MathViewModel model)
         {
-            var (a, b, c, error) = EquationParser.ParseQuadratic(model.Equation ?? "");
+            var (a, b, error) = EquationParser.ParseLinear(model.Equation ?? "");
 
             if (error != null)
             {
@@ -20,8 +20,8 @@ namespace AdvancedMathPlatform.Controllers
                 return View("Index", model);
             }
 
-            var factory = new QuadraticProblemFactory();
-            var problem = factory.CreateProblem(a, b, c);
+            var factory = new LinearProblemFactory();
+            var problem = factory.CreateProblem(a, b);
             model.Steps = problem.SolveWithSteps().ToList();
 
             return View("Index", model);

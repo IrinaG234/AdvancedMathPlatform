@@ -35,52 +35,52 @@ body {
     overflow-y: auto;
 }
 
-.sidebar h2 {
-    color: #ffffff;
-    margin-bottom: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    .sidebar h2 {
+        color: #ffffff;
+        margin-bottom: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
 
-.sidebar h2:hover {
-    color: #38bdf8;
-}
+        .sidebar h2:hover {
+            color: #38bdf8;
+        }
 
-.sidebar h3 {
-    color: #38bdf8;
-    margin-top: 20px;
-}
+    .sidebar h3 {
+        color: #38bdf8;
+        margin-top: 20px;
+    }
 
-.sidebar ul {
-    list-style: none;
-    margin-top: 10px;
-}
+    .sidebar ul {
+        list-style: none;
+        margin-top: 10px;
+    }
 
-.sidebar ul li {
-    color: #e2e8f0;
-    padding: 8px 0;
-    cursor: pointer;
-    transition: 0.3s;
-}
+        .sidebar ul li {
+            color: #e2e8f0;
+            padding: 8px 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-.sidebar ul li:hover {
-    color: #38bdf8;
-    padding-left: 8px;
-}
+            .sidebar ul li:hover {
+                color: #38bdf8;
+                padding-left: 8px;
+            }
 
-/* Scroll custom */
-.sidebar::-webkit-scrollbar,
-.right-panel::-webkit-scrollbar,
-.main::-webkit-scrollbar {
-    width: 6px;
-}
+    /* Scroll custom */
+    .sidebar::-webkit-scrollbar,
+    .right-panel::-webkit-scrollbar,
+    .main::-webkit-scrollbar {
+        width: 6px;
+    }
 
-.sidebar::-webkit-scrollbar-thumb,
-.right-panel::-webkit-scrollbar-thumb,
-.main::-webkit-scrollbar-thumb {
-    background: #38bdf8;
-    border-radius: 10px;
-}
+    .sidebar::-webkit-scrollbar-thumb,
+    .right-panel::-webkit-scrollbar-thumb,
+    .main::-webkit-scrollbar-thumb {
+        background: #38bdf8;
+        border-radius: 10px;
+    }
     /* Sidebar links */
     .sidebar a {
         text-decoration: none; /* scoate sublinierea */
@@ -112,7 +112,8 @@ body {
 
 /* WORK AREA (zona cu exerciții) */
 #workArea {
-    display: none; /* ascuns la început */
+    display: block;
+    margin-top: 30px;
 }
 
 .main h1 {
@@ -135,26 +136,37 @@ body {
     gap: 10px;
 }
 
-.input-section label {
-    color: #e2e8f0;
+    .input-section label {
+        color: #e2e8f0;
+    }
+
+textarea,
+input[type="text"],
+input[type="number"] {
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+    padding: 10px 14px;
+    font-size: 15px;
+    background: #1e293b;
+    color: #ffffff;
+    width: 100%;
+    max-width: 420px;
 }
 
 textarea {
     height: 90px;
-    border-radius: 10px;
-    border: 1px solid #334155;
-    padding: 12px;
-    font-size: 14px;
     resize: none;
-    background: #1e293b;
-    color: #ffffff;
 }
 
-textarea::placeholder {
-    color: #94a3b8;
-}
+    textarea::placeholder,
+    input::placeholder {
+        color: #94a3b8;
+    }
 
+button[type="submit"],
 .input-section button {
+    margin-top: 20px;
     width: 160px;
     padding: 10px;
     border: none;
@@ -163,12 +175,14 @@ textarea::placeholder {
     color: #0f172a;
     cursor: pointer;
     font-weight: bold;
+    font-size: 15px;
     transition: 0.3s;
 }
 
-.input-section button:hover {
-    background: #0ea5e9;
-}
+    button[type="submit"]:hover,
+    .input-section button:hover {
+        background: #0ea5e9;
+    }
 
 /* ===================== */
 /* REZULTAT */
@@ -176,6 +190,20 @@ textarea::placeholder {
 
 .result-section {
     margin-top: 40px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px 24px;
+    max-width: 560px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #e2e8f0;
+    white-space: pre-wrap;
+
+    p {
+        margin: 2px 0;
+    }
 }
 
 #resultBox {
@@ -237,18 +265,18 @@ textarea::placeholder {
     color: #0f172a;
 }
 
-.edit:hover {
-    background: #0ea5e9;
-}
+    .edit:hover {
+        background: #0ea5e9;
+    }
 
 .logout {
     background: #ef4444;
     color: white;
 }
 
-.logout:hover {
-    background: #dc2626;
-}
+    .logout:hover {
+        background: #dc2626;
+    }
 
 /* ===================== */
 /* HISTORY */
@@ -281,12 +309,43 @@ textarea::placeholder {
     margin-top: 60px;
 }
 
-#welcomeBlock h2 {
-    color: #38bdf8;
-    margin-bottom: 20px;
+    #welcomeBlock h2 {
+        color: #38bdf8;
+        margin-bottom: 20px;
+    }
+
+    #welcomeBlock p {
+        color: #cbd5e1;
+        line-height: 1.6;
+    }
+
+/* ===================== */
+/* STEPS - REZOLVARE     */
+/* ===================== */
+
+.step-divider {
+    border-top: 1px solid #334155;
+    margin: 10px 0;
 }
 
-#welcomeBlock p {
-    color: #cbd5e1;
-    line-height: 1.6;
+.step-answer {
+    color: #38bdf8 !important;
+    font-weight: bold;
+    font-size: 16px !important;
+    margin-top: 6px;
+}
+
+.step-delta {
+    color: #fbbf24 !important;
+    font-weight: bold;
+}
+
+.error-section {
+    border-left: 4px solid #ef4444 !important;
+    color: #fca5a5 !important;
+    background: rgba(239, 68, 68, 0.08) !important;
+}
+
+.error-icon {
+    margin-right: 6px;
 }

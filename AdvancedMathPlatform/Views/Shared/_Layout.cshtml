@@ -46,7 +46,7 @@
                             Ecuații grad II
                         </a>
                     </li>
-                    <li onclick="loadContent('Sistem de ecuatii')">Sistem de ecuații</li>
+                    <li>Sistem de ecuații</li>
                     <li onclick="loadContent('Proportii')">Proporții</li>
                     <li onclick="loadContent('Teorema lui Pitagora')">Teorema lui Pitagora</li>
                     <li onclick="loadContent('Aria si Perimetrul')">Aria și Perimetrul</li>
@@ -57,9 +57,9 @@
                     <li onclick="loadContent('Matrici')">Matrici</li>
                     <li onclick="loadContent(' Determinati')">Determinanți</li>
                     <li onclick="loadContent(' Probabilitati')">Probabilități</li>
-                    <li onclick="loadContent('Logaritmi')" >Logaritmi</li>
-                    <li onclick="loadContent('Progresie aritmetica')" >Progresie aritmetică</li>
-                    <li onclick="loadContent('Functii avansate')" >Funcții avansate</li>
+                    <li onclick="loadContent('Logaritmi')">Logaritmi</li>
+                    <li onclick="loadContent('Progresie aritmetica')">Progresie aritmetică</li>
+                    <li onclick="loadContent('Functii avansate')">Funcții avansate</li>
                 </ul>
 
             </div>
@@ -94,5 +94,6 @@
     </div>
 
     <script src="~/js/AMP_script.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
